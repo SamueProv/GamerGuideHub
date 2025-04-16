@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Fortnite",
+    "slug": "fortnite",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1580327344181-c1163234e5a0?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 2,
+    "name": "Minecraft",
+    "slug": "minecraft",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1624085367917-a0b02e7ca8a1?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 3,
+    "name": "Call of Duty",
+    "slug": "call-of-duty",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1602673221577-0b56d7ce446b?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 4,
+    "name": "League of Legends",
+    "slug": "league-of-legends",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 5,
+    "name": "Valorant",
+    "slug": "valorant",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1603481546239-65e837a9ef5a?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 6,
+    "name": "Apex Legends",
+    "slug": "apex-legends",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 7,
+    "name": "PUBG",
+    "slug": "pubg",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 8,
+    "name": "GTA V",
+    "slug": "gta-v",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1593277992013-b85473a4d200?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 9,
+    "name": "Cyberpunk 2077",
+    "slug": "cyberpunk-2077",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=30&h=30"
+  },
+  {
+    "id": 10,
+    "name": "PC Building",
+    "slug": "pc-building",
+    "thumbnailUrl": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=30&h=30"
+  }
+]
