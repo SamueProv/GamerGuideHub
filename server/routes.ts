@@ -4,6 +4,8 @@ import { storage } from "./storage";
 import path from "path";
 import fs from "fs";
 import { sendCodeUpdates } from "./email";
+import { setupAuth } from "./auth";
+import { InsertGame, InsertChannel, InsertVideo } from "@shared/schema";
 
 // Load mock data
 const loadJsonData = <T>(filename: string): T => {
@@ -15,24 +17,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize the server with data
   const initialize = async () => {
     try {
-      const videosData = loadJsonData('videos.json');
-      const gamesData = loadJsonData('games.json');
-      const channelsData = loadJsonData('channels.json');
+      const videosData = loadJsonData<InsertVideo[]>('videos.json');
+      const gamesData = loadJsonData<InsertGame[]>('games.json');
+      const channelsData = loadJsonData<InsertChannel[]>('channels.json');
       
       // Preload the data into storage
       await Promise.all([
-        ...gamesData.map((game: any) => storage.createGame(game)),
-        ...channelsData.map((channel: any) => storage.createChannel(channel)),
+        ...gamesData.map((game) => storage.createGame(game)),
+        ...channelsData.map((channel) => storage.createChannel(channel)),
       ]);
       
       // Add videos after games and channels
-      await Promise.all(videosData.map((video: any) => storage.createVideo(video)));
+      await Promise.all(videosData.map((video) => storage.createVideo(video)));
       
       console.log('Mock data loaded successfully');
     } catch (error) {
       console.error('Error loading mock data:', error);
     }
   };
+  
+  // Set up authentication
+  setupAuth(app);
   
   // Initialize with mock data
   await initialize();

@@ -25,10 +25,10 @@ export async function sendEmail(params: EmailParams): Promise<boolean> {
 
     await mailService.send({
       to: params.to,
-      from: 'gametube@example.com', // Should be verified in SendGrid
+      from: 'dinogames@example.com', // Should be verified in SendGrid
       subject: params.subject,
-      text: params.text,
-      html: params.html,
+      text: params.text || '',
+      html: params.html || '',
     });
     
     console.log(`Email sent successfully to ${params.to}`);
