@@ -1,5 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import { Strategy as GitHubStrategy } from "passport-github2";
 import { Express } from "express";
 import session from "express-session";
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
@@ -46,6 +47,31 @@ export function setupAuth(app: Express) {
   app.use(session(sessionSettings));
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // GitHub OAuth Strategy
+  passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID || '',
+    clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
+    callbackURL: "/auth/github/callback"
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    try {
+      let user = await storage.getUserByUsername(profile.username || '');
+      
+      if (!user) {
+        user = await storage.createUser({
+          username: profile.username || '',
+          password: '', // GitHub users don't need password
+          email: profile.emails?.[0]?.value || '',
+          profilePicture: profile.photos?.[0]?.value || `https://api.dicebear.com/6.x/bottts/svg?seed=${profile.username}`,
+        });
+      }
+      
+      return done(null, user);
+    } catch (error) {
+      return done(error);
+    }
+  }));
 
   passport.use(
     new LocalStrategy(async (username, password, done) => {
@@ -127,6 +153,18 @@ export function setupAuth(app: Express) {
       });
     })(req, res, next);
   });
+
+  // GitHub auth routes
+  app.get('/auth/github',
+    passport.authenticate('github', { scope: [ 'user:email' ] })
+  );
+
+  app.get('/auth/github/callback',
+    passport.authenticate('github', { 
+      failureRedirect: '/login',
+      successRedirect: '/'
+    })
+  );
 
   app.post("/api/logout", (req, res, next) => {
     req.logout((err) => {
