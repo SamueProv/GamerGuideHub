@@ -50,7 +50,7 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       {/* Mobile header */}
-      <div className="flex items-center justify-center h-14 border-b border-gray-800">
+      <div className="flex items-center justify-center h-14 border-b border-gray-800 bg-gray-900">
         <h1 className="text-xl font-semibold text-white">
           {isLogin ? "Accesso" : "Crea Account"}
         </h1>

@@ -19,13 +19,19 @@ import { ProtectedRoute } from "@/lib/protected-route";
 function AppRoutes() {
   return (
     <Switch>
-      <ProtectedRoute path="/" component={Home} />
-      <ProtectedRoute path="/video/:id" component={Video} />
-      <ProtectedRoute path="/search" component={Search} />
-      <ProtectedRoute path="/category/:slug" component={Category} />
-      <ProtectedRoute path="/code-updates" component={CodeUpdates} />
       <Route path="/auth" component={AuthPage} />
-      <Route component={NotFound} />
+      <Route>
+        <MainLayout>
+          <Switch>
+            <ProtectedRoute path="/" component={Home} />
+            <ProtectedRoute path="/video/:id" component={Video} />
+            <ProtectedRoute path="/search" component={Search} />
+            <ProtectedRoute path="/category/:slug" component={Category} />
+            <ProtectedRoute path="/code-updates" component={CodeUpdates} />
+            <Route component={NotFound} />
+          </Switch>
+        </MainLayout>
+      </Route>
     </Switch>
   );
 }
@@ -59,9 +65,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <MainLayout>
-          <AppRoutes />
-        </MainLayout>
+        <AppRoutes />
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>
