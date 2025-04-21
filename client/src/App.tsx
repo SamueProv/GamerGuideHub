@@ -41,19 +41,19 @@ function MainLayout({ children }: { children: React.ReactNode }) {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-black text-white">
       <Header 
         onMenuClick={() => setIsMobileSidebarOpen(true)} 
         onSearchToggle={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
         isMobileSearchOpen={isMobileSearchOpen}
       />
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden bg-black">
         <Sidebar />
         <MobileSidebar 
           isOpen={isMobileSidebarOpen} 
           onClose={() => setIsMobileSidebarOpen(false)} 
         />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto bg-black">
           {children}
         </main>
       </div>

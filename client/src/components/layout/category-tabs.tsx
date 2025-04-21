@@ -18,11 +18,11 @@ export default function CategoryTabs({ selectedCategory }: CategoryTabsProps) {
   return (
     <>
       {/* Mobile Category Pills */}
-      <div className="md:hidden overflow-x-auto whitespace-nowrap p-2 bg-dark border-b border-darklight">
+      <div className="md:hidden overflow-x-auto whitespace-nowrap p-2 bg-black border-b border-gray-800">
         <Link href="/">
           <Button 
             variant={!selectedCategory ? "default" : "secondary"}
-            className={!selectedCategory ? "bg-primary text-white" : "bg-darklight text-white"} 
+            className={!selectedCategory ? "bg-gray-900 text-white" : "bg-gray-800 text-white"} 
             size="sm"
           >
             All
@@ -40,7 +40,7 @@ export default function CategoryTabs({ selectedCategory }: CategoryTabsProps) {
             <Link key={game.id} href={`/category/${game.slug}`}>
               <Button 
                 variant={selectedCategory === game.slug ? "default" : "secondary"}
-                className={`mx-2 ${selectedCategory === game.slug ? "bg-primary text-white" : "bg-darklight text-white"}`}
+                className={`mx-2 ${selectedCategory === game.slug ? "bg-gray-900 text-white" : "bg-gray-800 text-white"}`}
                 size="sm"
               >
                 {game.name}
@@ -51,11 +51,11 @@ export default function CategoryTabs({ selectedCategory }: CategoryTabsProps) {
       </div>
 
       {/* Desktop Category Tabs */}
-      <div className="hidden md:flex overflow-x-auto whitespace-nowrap p-3 bg-dark border-b border-darklight">
+      <div className="hidden md:flex overflow-x-auto whitespace-nowrap p-3 bg-black border-b border-gray-800">
         <Link href="/">
           <Button 
             variant={!selectedCategory ? "default" : "secondary"}
-            className={!selectedCategory ? "bg-primary text-white mr-2" : "bg-darklight text-white mr-2"} 
+            className={!selectedCategory ? "bg-gray-900 text-white mr-2" : "bg-gray-800 text-white mr-2"} 
           >
             All
           </Button>
@@ -72,7 +72,7 @@ export default function CategoryTabs({ selectedCategory }: CategoryTabsProps) {
             <Link key={game.id} href={`/category/${game.slug}`}>
               <Button 
                 variant={selectedCategory === game.slug ? "default" : "secondary"}
-                className={`mr-2 ${selectedCategory === game.slug ? "bg-primary text-white" : "bg-darklight text-white"}`}
+                className={`mr-2 ${selectedCategory === game.slug ? "bg-gray-900 text-white" : "bg-gray-800 text-white"}`}
               >
                 {game.name}
               </Button>
