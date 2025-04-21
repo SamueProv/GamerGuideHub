@@ -32,15 +32,14 @@ export default function AuthPage() {
     registerMutation.mutate({ 
       username, 
       password, 
-      email,
-      display_name: username 
+      email
     });
   };
 
   const isLoginDisabled = loginMutation.isPending || !username || !password;
   const isRegisterDisabled = registerMutation.isPending || !username || !password || !email || password !== confirmPassword;
 
-  if (loginMutation.isLoading || registerMutation.isLoading) {
+  if (loginMutation.isPending || registerMutation.isPending) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
@@ -63,31 +62,33 @@ export default function AuthPage() {
           <div className="flex-1 flex flex-col">
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-2">Accesso</h2>
-              <p className="text-gray-400">Accedi al tuo account DinoGames</p>
+              <p className="text-black font-bold">Accedi al tuo account DinoGames</p>
             </div>
             
             <form onSubmit={handleLogin} className="space-y-6">
               <div>
+                <label className="block text-black font-bold mb-2">Username</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                  <User className="absolute left-3 top-3.5 h-5 w-5 text-black" />
                   <Input 
-                    placeholder="Username" 
+                    placeholder="Inserisci il tuo username" 
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="h-12 pl-10 bg-white border-gray-300 text-black"
+                    className="h-12 pl-10 bg-white border-gray-500 text-black font-medium"
                   />
                 </div>
               </div>
               
               <div>
+                <label className="block text-black font-bold mb-2">Password</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-3.5 h-5 w-5 text-black" />
                   <Input 
                     type="password" 
-                    placeholder="Password" 
+                    placeholder="Inserisci la tua password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="h-12 pl-10 bg-white border-gray-300 text-black"
+                    className="h-12 pl-10 bg-white border-gray-500 text-black font-medium"
                   />
                 </div>
               </div>
@@ -108,7 +109,7 @@ export default function AuthPage() {
             
             <div className="mt-6 relative flex items-center">
               <div className="flex-grow border-t border-gray-700"></div>
-              <span className="flex-shrink mx-4 text-gray-500">oppure accedi con</span>
+              <span className="flex-shrink mx-4 text-black font-medium">oppure accedi con</span>
               <div className="flex-grow border-t border-gray-700"></div>
             </div>
             
@@ -130,12 +131,12 @@ export default function AuthPage() {
             </div>
             
             <div className="mt-auto pb-6 text-center">
-              <p className="text-gray-400">
+              <p className="text-black font-medium">
                 Non hai un account?{" "}
                 <button
                   type="button"
                   onClick={() => setIsLogin(false)}
-                  className="text-white hover:underline font-medium"
+                  className="text-white hover:underline font-bold"
                 >
                   Registrati
                 </button>
@@ -147,61 +148,65 @@ export default function AuthPage() {
           <div className="flex-1 flex flex-col">
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-2">Crea Account</h2>
-              <p className="text-gray-400">Registrati a DinoGames</p>
+              <p className="text-black font-bold">Registrati a DinoGames</p>
             </div>
             
             <form onSubmit={handleRegister} className="space-y-6">
               <div>
+                <label className="block text-black font-bold mb-2">Username</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                  <User className="absolute left-3 top-3.5 h-5 w-5 text-black" />
                   <Input 
-                    placeholder="Username" 
+                    placeholder="Scegli un username" 
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="h-12 pl-10 bg-white border-gray-300 text-black"
+                    className="h-12 pl-10 bg-white border-gray-500 text-black font-medium"
                   />
                 </div>
               </div>
               
               <div>
+                <label className="block text-black font-bold mb-2">Email</label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                  <Mail className="absolute left-3 top-3.5 h-5 w-5 text-black" />
                   <Input 
                     type="email" 
-                    placeholder="Email" 
+                    placeholder="Inserisci la tua email" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="h-12 pl-10 bg-white border-gray-300 text-black"
+                    className="h-12 pl-10 bg-white border-gray-500 text-black font-medium"
                   />
                 </div>
               </div>
               
               <div>
+                <label className="block text-black font-bold mb-2">Password</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-3.5 h-5 w-5 text-black" />
                   <Input 
                     type="password" 
-                    placeholder="Password" 
+                    placeholder="Crea una password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="h-12 pl-10 bg-white border-gray-300 text-black"
+                    className="h-12 pl-10 bg-white border-gray-500 text-black font-medium"
                   />
                 </div>
               </div>
               
               <div>
+                <label className="block text-black font-bold mb-2">Conferma Password</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-3.5 h-5 w-5 text-black" />
                   <Input 
                     type="password" 
-                    placeholder="Conferma Password" 
+                    placeholder="Ripeti la password" 
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="h-12 pl-10 bg-white border-gray-300 text-black"
+                    className="h-12 pl-10 bg-white border-gray-500 text-black font-medium"
                   />
                 </div>
                 {password !== confirmPassword && confirmPassword && (
-                  <p className="text-red-500 text-sm mt-1">Le password non corrispondono</p>
+                  <p className="text-red-500 text-sm mt-1 font-bold">Le password non corrispondono</p>
                 )}
               </div>
               
@@ -221,7 +226,7 @@ export default function AuthPage() {
             
             <div className="mt-6 relative flex items-center">
               <div className="flex-grow border-t border-gray-700"></div>
-              <span className="flex-shrink mx-4 text-gray-500">oppure registrati con</span>
+              <span className="flex-shrink mx-4 text-black font-medium">oppure registrati con</span>
               <div className="flex-grow border-t border-gray-700"></div>
             </div>
             
@@ -243,12 +248,12 @@ export default function AuthPage() {
             </div>
             
             <div className="mt-auto pb-6 text-center">
-              <p className="text-gray-400">
+              <p className="text-black font-medium">
                 Hai già un account?{" "}
                 <button
                   type="button"
                   onClick={() => setIsLogin(true)}
-                  className="text-white hover:underline font-medium"
+                  className="text-white hover:underline font-bold"
                 >
                   Accedi
                 </button>
