@@ -49,9 +49,14 @@ export function setupAuth(app: Express) {
   app.use(passport.session());
 
   // GitHub OAuth Strategy
+  if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
+    console.error('Missing GitHub OAuth credentials');
+    return;
+  }
+
   passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID || '',
-    clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: "/auth/github/callback"
   },
   async (accessToken, refreshToken, profile, done) => {
